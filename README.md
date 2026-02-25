@@ -1,7 +1,7 @@
-# Module 5 Case Track: Checkout Login Flow Stabilization
+# Case Track: Authentication Login Flow Stabilization
 
 **Project Title**: Playwright QA Automation - Login Flow Stability Analysis and Fix  
-**Course Module**: Module 5 (Applied Playwright JavaScript Case Track)  
+**Course Module**: Applied Playwright JavaScript Case Track
 **Submitted**: February 25, 2026  
 **Target Applications**: https://www.saucedemo.com/  
 
@@ -9,7 +9,7 @@
 
 ## � Short Project Summary (Max 10 Lines)
 
-**Problem**: Checkout login tests fail intermittently in CI (Chromium) with timeouts and missed error assertions due to race conditions between assertions and API responses.
+**Problem**: Authentication login tests fail intermittently in CI (Chromium) with timeouts and missed error assertions due to race conditions between assertions and API responses.
 
 **Approach**: Applied RPI (Research → Plan → Implement) workflow with full governance.
 
@@ -24,9 +24,9 @@
 ### 📂 File Locations
 
 **RPI Artifacts** (Evidence Trail):
-- `docs/rpi/research/checkout-login-flake.md` — ROOT CAUSE analysis
-- `docs/rpi/plan/checkout-login-stabilization.md` — Design & acceptance criteria
-- `docs/rpi/implement/checkout-login-stabilization.md` — Validation results
+- `docs/rpi/research/auth-login-flake.md` — ROOT CAUSE analysis
+- `docs/rpi/plan/auth-login-stabilization.md` — Design & acceptance criteria
+- `docs/rpi/implement/auth-login-stabilization.md` — Validation results
 
 **Governance Files** (.github/):
 - `.github/instructions/playwright.instructions.md` — Playwright rules
@@ -37,8 +37,8 @@
 - `.github/copilot-instructions.md` — Global governance
 
 **Implementation** (Tests & Page Objects):
-- `tests/checkout/login.spec.js` — 5 passing tests
-- `pages/checkout/LoginPage.js` — Page Object Model
+- `tests/auth/login.spec.js` — 5 passing tests
+- `pages/auth/LoginPage.js` — Page Object Model
 
 ---
 
@@ -84,23 +84,23 @@ Applied RPI discipline to:
 docs/rpi/
 ├── research/
 │   ├── copilot-governance.md            # Governance research
-│   └── checkout-login-flake.md          # Login flake analysis ⭐
+│   └── auth-login-flake.md              # Login flake analysis ⭐
 ├── plan/
 │   ├── copilot-governance.md            # Governance plan
-│   └── checkout-login-stabilization.md  # Login fix design ⭐
+│   └── auth-login-stabilization.md      # Login fix design ⭐
 └── implement/
     ├── copilot-governance.md            # Governance implementation
-    └── checkout-login-stabilization.md  # Login fix validation ⭐
+    └── auth-login-stabilization.md      # Login fix validation ⭐
 ```
 
 ### Test Implementation (Module 5, this submission)
 ```
 tests/
-└── checkout/
+└── auth/
     └── login.spec.js                    # 5 login test cases ⭐
 
 pages/
-└── checkout/
+└── auth/
     └── LoginPage.js                     # Page object model ⭐
 
 playwright.config.js                     # Config with trace diagnostics
@@ -111,7 +111,7 @@ playwright.config.js                     # Config with trace diagnostics
 ## 🎯 RPI Workflow Summary
 
 ### Stage 1: Research ✅
-**File**: `docs/rpi/research/checkout-login-flake.md` (12 KB)
+**File**: `docs/rpi/research/auth-login-flake.md` (12 KB)
 
 **What We Learned**:
 - Facts: Test fails with "Timeout waiting for .inventory_list" in CI
@@ -124,7 +124,7 @@ playwright.config.js                     # Config with trace diagnostics
 ---
 
 ### Stage 2: Plan ✅
-**File**: `docs/rpi/plan/checkout-login-stabilization.md` (13 KB)
+**File**: `docs/rpi/plan/auth-login-stabilization.md` (13 KB)
 
 **What We Designed**:
 - Scope: 2 files, ~50 lines of new code
@@ -139,15 +139,15 @@ playwright.config.js                     # Config with trace diagnostics
 ---
 
 ### Stage 3: Implement ✅
-**File**: `docs/rpi/implement/checkout-login-stabilization.md` (14 KB)
+**File**: `docs/rpi/implement/auth-login-stabilization.md` (14 KB)
 
 **What We Built**:
-1. ✅ `pages/checkout/LoginPage.js` (193 lines)
+1. ✅ `pages/auth/LoginPage.js` (193 lines)
    - Role-based locators (`getByRole()`)
    - Explicit wait methods (`waitForInventoryPage()`, `waitForErrorBanner()`)
    - Network-aware submit (`waitForURL()` before assertions)
 
-2. ✅ `tests/checkout/login.spec.js` (181 lines)
+2. ✅ `tests/auth/login.spec.js` (181 lines)
    - 5 test cases covering success and error paths
    - Uses page object for all interactions
    - No arbitrary sleeps; explicit waits only
@@ -160,7 +160,7 @@ playwright.config.js                     # Config with trace diagnostics
 
 ### Test Execution Command
 ```bash
-npx playwright test tests/checkout/login.spec.js --project=chromium
+npx playwright test tests/auth/login.spec.js --project=chromium
 ```
 
 ### Results
@@ -216,7 +216,7 @@ Test Cases:
 - **Files Modified**: 0 (config already had trace enabled)
 - **Lines of Code**: ~374 (POM + tests)
 - **Test Cases**: 5
-- **Directories**: tests/checkout/, pages/checkout/
+- **Directories**: tests/auth/, pages/auth/
 
 ### Quality
 - **Pass Rate**: 100% (5/5 tests)
@@ -244,22 +244,22 @@ Test Cases:
 #### 1. Review RPI Artifacts (10 minutes)
 ```bash
 # Understand the problem
-cat docs/rpi/research/checkout-login-flake.md
+cat docs/rpi/research/auth-login-flake.md
 
 # Understand the solution design
-cat docs/rpi/plan/checkout-login-stabilization.md
+cat docs/rpi/plan/auth-login-stabilization.md
 
 # Understand the implementation
-cat docs/rpi/implement/checkout-login-stabilization.md
+cat docs/rpi/implement/auth-login-stabilization.md
 ```
 
 #### 2. Run Login Tests Locally (2 minutes)
 ```bash
 # Run on Chromium
-npx playwright test tests/checkout/login.spec.js --project=chromium
+npx playwright test tests/auth/login.spec.js --project=chromium
 
 # Run on all browsers
-npx playwright test tests/checkout/login.spec.js
+npx playwright test tests/auth/login.spec.js
 ```
 
 #### 3. View HTML Report (1 minute)
@@ -270,10 +270,10 @@ npx playwright show-report
 #### 4. Inspect Page Object (5 minutes)
 ```bash
 # See how LoginPage encapsulates selectors and waits
-cat pages/checkout/LoginPage.js
+cat pages/auth/LoginPage.js
 
 # See how tests use the POM (no inline selectors)
-cat tests/checkout/login.spec.js
+cat tests/auth/login.spec.js
 ```
 
 ---
@@ -330,17 +330,17 @@ cat tests/checkout/login.spec.js
 **Solution**: RPI-driven stabilization using page object model and explicit wait strategy
 
 **Artifacts**:
-1. Research: `docs/rpi/research/checkout-login-flake.md` (root-cause analysis)
-2. Plan: `docs/rpi/plan/checkout-login-stabilization.md` (design & acceptance criteria)
-3. Implement: `docs/rpi/implement/checkout-login-stabilization.md` (validation results)
+1. Research: `docs/rpi/research/auth-login-flake.md` (root-cause analysis)
+2. Plan: `docs/rpi/plan/auth-login-stabilization.md` (design & acceptance criteria)
+3. Implement: `docs/rpi/implement/auth-login-stabilization.md` (validation results)
 
 **Test Results**: 
-- Command: `npx playwright test tests/checkout/login.spec.js --project=chromium`
+- Command: `npx playwright test tests/auth/login.spec.js --project=chromium`
 - Result: ✅ 5 passed (16.8s)
 - Pass Rate: 100%
 
 **Code Quality**:
-- Page Object: 193 lines (role-based locators, explicit waits)
+- Page Object: 193 lines (auth module, role-based locators, explicit waits)
 - Tests: 181 lines (5 test cases, all passing)
 - Zero arbitrary sleeps
 
@@ -355,7 +355,7 @@ cat tests/checkout/login.spec.js
 | **RPI Staging Discipline** | docs/rpi/* (research/plan/implement) | ✅ Complete |
 | **Prompt/Instruction/Agent Coherence** | .github/ (instructions, prompts, agents) | ✅ Complete |
 | **Slash Command Context** | .github/copilot-instructions.md (RPI prompts) | ✅ Complete |
-| **Playwright JS Implementation** | pages/checkout/, tests/checkout/ | ✅ Complete |
+| **Playwright JS Implementation** | pages/auth/, tests/auth/ | ✅ Complete |
 | **Evidence Reproducibility** | docs/rpi/implement/*.md (validation commands) | ✅ Complete |
 | **>= 80% Pass Threshold** | 5/5 tests passing (100%) | ✅ Exceeded |
 
@@ -367,8 +367,8 @@ cat tests/checkout/login.spec.js
 - `.github/copilot-instructions.md` — QA governance rules and RPI workflow
 - `.github/instructions/playwright.instructions.md` — Playwright best practices
 - `playwright.config.js` — Test configuration with trace diagnostics
-- `tests/checkout/login.spec.js` — Stabilized login tests
-- `pages/checkout/LoginPage.js` — Page object with best practices
+- `tests/auth/login.spec.js` — Stabilized login tests
+- `pages/auth/LoginPage.js` — Page object with best practices
 
 ### External References
 - [Playwright Best Practices](https://playwright.dev/docs/best-practices)
@@ -402,7 +402,7 @@ cat tests/checkout/login.spec.js
 If execution fails:
 1. Verify Node.js 20+ installed: `node --version`
 2. Verify Playwright installed: `npm install`
-3. Run tests: `npx playwright test tests/checkout/login.spec.js`
+3. Run tests: `npx playwright test tests/auth/login.spec.js`
 4. Check report: `npx playwright show-report`
 5. Review artifacts in `docs/rpi/*` for context
 

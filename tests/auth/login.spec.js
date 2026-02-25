@@ -1,5 +1,5 @@
 /**
- * Login Flow Tests - Checkout Module
+ * Login Flow Tests - Authentication Module
  * 
  * RPI Scope: Stabilization of intermittent timeouts in login flow
  * Reference: docs/rpi/plan/checkout-login-stabilization.md
@@ -10,7 +10,7 @@
  */
 
 import { expect, test } from '@playwright/test';
-import { LoginPage } from '../../pages/checkout/LoginPage.js';
+import { LoginPage } from '../../pages/auth/LoginPage.js';
 
 // Test data - stable credentials
 const VALID_USER = 'standard_user';
