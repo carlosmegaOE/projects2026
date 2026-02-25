@@ -1,0 +1,206 @@
+name: Playwright Smoke Tests
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  smoke-chromium:
+    name: Smoke - Chromium
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      
+      - name: Install dependencies
+        run: npm ci
+      
+      - name: Install Playwright browsers
+        run: npx playwright install --with-deps
+      
+      - name: Run Smoke tests
+        run: npm test -- tests/example.spec.js --project=chromium
+        continue-on-error: true
+      
+      - name: Upload blob report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: blob-report-smoke
+          path: blob-report
+          retention-days: 1
+
+  merge-reports:
+    name: Merge Test Reports
+    if: always()
+    needs: [smoke-chromium]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      
+      - name: Install dependencies
+        run: npm ci
+      
+      - name: Download all blob reports
+        uses: actions/download-artifact@v4
+        with:
+          path: all-blob-reports
+          pattern: blob-report-*
+      
+      - name: Merge reports
+        run: |
+          npx playwright merge-reports --reporter html ./all-blob-reports
+      
+      - name: Upload HTML report
+        uses: actions/upload-artifact@v4
+        with:
+          name: html-report-smoke
+          path: playwright-report
+          retention-days: 14
+
+  generate-dashboard:
+    name: Generate Smoke Dashboard
+    if: always()
+    needs: [merge-reports]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      
+      - name: Download HTML report
+        uses: actions/download-artifact@v4
+        with:
+          name: html-report-smoke
+          path: playwright-report
+      
+      - name: Generate Dashboard
+        run: node scripts/generate-dashboard.js
+        env:
+          CI_BUILD_ID: ${{ github.run_id }}
+          CI_BUILD_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+          CI_COMMIT_SHA: ${{ github.sha }}
+          CI_COMMIT_REF: ${{ github.ref }}
+          CI_PIPELINE_NAME: 'Smoke'
+      
+      - name: Generate History Dashboard
+        run: node scripts/generate-history.js
+      
+      - name: Upload dashboard
+        uses: actions/upload-artifact@v4
+        with:
+          name: dashboard-smoke
+          path: public
+          retention-days: 30
+  
+  send-email:
+    name: Send Status Email
+    if: always()
+    needs: [generate-dashboard]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Download dashboard
+        uses: actions/download-artifact@v4
+        with:
+          name: dashboard-smoke
+          path: public
+      
+      - name: Check test status
+        id: test-status
+        run: |
+          if [ -f "public/test-summary.json" ]; then
+            STATUS=$(jq -r '.status' public/test-summary.json)
+            echo "status=$STATUS" >> $GITHUB_OUTPUT
+          else
+            echo "status=unknown" >> $GITHUB_OUTPUT
+          fi
+      
+      - name: Send email on success
+        if: steps.test-status.outputs.status == 'passed'
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: ${{ secrets.MAIL_SERVER }}
+          server_port: ${{ secrets.MAIL_PORT }}
+          username: ${{ secrets.MAIL_USERNAME }}
+          password: ${{ secrets.MAIL_PASSWORD }}
+          subject: '✅ Smoke Tests - All Tests Passed'
+          to: carlos.mega@objectedge.com
+          from: ${{ secrets.MAIL_FROM }}
+          body: |
+            Olá,
+            
+            Os testes de smoke foram executados com sucesso! 🎉
+            
+            Dashboard: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+            Commit: ${{ github.sha }}
+            Branch: ${{ github.ref_name }}
+            
+            Todos os testes passaram!
+            
+            Atenciosamente,
+            CI/CD Pipeline
+          html_body: |
+            <html>
+              <body>
+                <h2>✅ Smoke Tests - All Tests Passed</h2>
+                <p>Os testes de smoke foram executados com sucesso!</p>
+                <ul>
+                  <li><strong>Build ID:</strong> ${{ github.run_id }}</li>
+                  <li><strong>Commit:</strong> ${{ github.sha }}</li>
+                  <li><strong>Branch:</strong> ${{ github.ref_name }}</li>
+                </ul>
+                <p><a href="${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}">View Dashboard</a></p>
+              </body>
+            </html>
+
+  publish-dashboard:
+    name: Publish Smoke Dashboard
+    if: always()
+    needs: [generate-dashboard]
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Download dashboard
+        uses: actions/download-artifact@v4
+        with:
+          name: dashboard-smoke
+          path: ./public
+      
+      - name: Download HTML report
+        uses: actions/download-artifact@v4
+        with:
+          name: html-report-smoke
+          path: ./public/report
+      
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+      
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: './public'
+      
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
