@@ -20,8 +20,6 @@
 
 ---
 
----
-
 ## Project Overview
 
 This project applies the complete **RPI (Research → Plan → Implement)** workflow to stabilize an intermittently failing login test suite in Playwright. The work demonstrates evidence-driven QA engineering with full traceability from problem identification through solution validation.
