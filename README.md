@@ -314,6 +314,40 @@ cat tests/auth/login.spec.js
 
 ---
 
+## ✅ Practical Validation Checklist (Course Requirements)
+
+Course timeline requirements:
+- [x] Release date: February 19, 2026
+- [x] Completion deadline: February 28, 2026
+- [x] This project: February 25, 2026 ✅ (on time)
+
+Module alignment:
+- [x] **All modules are Copilot-first and RPI-ordered**
+  - Module 1: RPI framework (Research → Plan → Implement)
+  - Module 2: Agent Mode + repository context
+  - Module 3: Copilot in VS Code + advanced constraints
+  - Module 4: Workflow discipline + slash-command execution
+  - Module 5: Applied Playwright case track (this project)
+
+Governance requirements:
+- [x] **`.agent.md` is taught as primary, `.chatmode.md` is treated as legacy note**
+  - See: `.github/copilot-instructions.md` → "Context Files: Agent Mode vs Chat Mode"
+  - Explicitly marks `.agent.md` as "Preferred modern behavior definitions"
+  - Marks `.chatmode.md` as "Legacy fallback only"
+
+Visualization requirements:
+- [x] **Mermaid diagrams render slash-command and RPI stage flows**
+  - RPI Stage Gate Sequence diagram (approval gates, decision points)
+  - Slash Command Execution Sequence diagram (prompt → context → Agent Mode → validation)
+
+End project requirements:
+- [x] **End project instructions include mandatory email and repo URL requirements**
+  - Email: patricia.nardelli@objectedge.com (MANDATORY)
+  - Repository URL: https://github.com/carlosmegaOE/projects2026
+  - Submission format documented with required fields
+
+---
+
 ## 📧 Submission Checklist
 
 ### Required Artifacts (Module 6)
