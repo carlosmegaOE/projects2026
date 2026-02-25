@@ -98,15 +98,15 @@
   },
   "suites": [
     {
-      "title": "checkout/login.spec.js",
-      "file": "checkout/login.spec.js",
+      "title": "auth/login.spec.js",
+      "file": "auth/login.spec.js",
       "column": 0,
       "line": 0,
       "specs": [],
       "suites": [
         {
           "title": "Login Flow",
-          "file": "checkout/login.spec.js",
+          "file": "auth/login.spec.js",
           "line": 31,
           "column": 6,
           "specs": [
@@ -126,12 +126,12 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 1608,
+                      "duration": 1491,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-02-25T14:11:37.380Z",
+                      "startTime": "2026-02-25T14:34:39.053Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -139,8 +139,8 @@
                   "status": "expected"
                 }
               ],
-              "id": "4a807a00a49d115e2594-3099c060d791bf220bac",
-              "file": "checkout/login.spec.js",
+              "id": "626483fc77c4bb72c38c-ce0dddd3ca2323b777a1",
+              "file": "auth/login.spec.js",
               "line": 47,
               "column": 5
             },
@@ -160,12 +160,12 @@
                       "workerIndex": 1,
                       "parallelIndex": 1,
                       "status": "passed",
-                      "duration": 11564,
+                      "duration": 11445,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-02-25T14:11:37.382Z",
+                      "startTime": "2026-02-25T14:34:39.055Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -173,8 +173,8 @@
                   "status": "expected"
                 }
               ],
-              "id": "4a807a00a49d115e2594-bbef719e24ba62de36d2",
-              "file": "checkout/login.spec.js",
+              "id": "626483fc77c4bb72c38c-627b6f42629e68018b91",
+              "file": "auth/login.spec.js",
               "line": 82,
               "column": 5
             },
@@ -194,12 +194,12 @@
                       "workerIndex": 2,
                       "parallelIndex": 2,
                       "status": "passed",
-                      "duration": 11566,
+                      "duration": 11440,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-02-25T14:11:37.387Z",
+                      "startTime": "2026-02-25T14:34:39.089Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -207,8 +207,8 @@
                   "status": "expected"
                 }
               ],
-              "id": "4a807a00a49d115e2594-f36995a2b9853601824d",
-              "file": "checkout/login.spec.js",
+              "id": "626483fc77c4bb72c38c-669a52ed2609de5d815f",
+              "file": "auth/login.spec.js",
               "line": 111,
               "column": 5
             },
@@ -228,12 +228,12 @@
                       "workerIndex": 3,
                       "parallelIndex": 3,
                       "status": "passed",
-                      "duration": 1438,
+                      "duration": 1317,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-02-25T14:11:37.377Z",
+                      "startTime": "2026-02-25T14:34:39.048Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -241,8 +241,8 @@
                   "status": "expected"
                 }
               ],
-              "id": "4a807a00a49d115e2594-ab17a164cef8015f2b9a",
-              "file": "checkout/login.spec.js",
+              "id": "626483fc77c4bb72c38c-2c5b6844bc87cfd2a1f0",
+              "file": "auth/login.spec.js",
               "line": 137,
               "column": 5
             },
@@ -262,12 +262,12 @@
                       "workerIndex": 4,
                       "parallelIndex": 4,
                       "status": "passed",
-                      "duration": 1556,
+                      "duration": 1431,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-02-25T14:11:37.376Z",
+                      "startTime": "2026-02-25T14:34:39.041Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -275,8 +275,8 @@
                   "status": "expected"
                 }
               ],
-              "id": "4a807a00a49d115e2594-4c4753471d30fc263542",
-              "file": "checkout/login.spec.js",
+              "id": "626483fc77c4bb72c38c-d5a917a46f73772e3c66",
+              "file": "auth/login.spec.js",
               "line": 159,
               "column": 5
             }
@@ -287,8 +287,8 @@
   ],
   "errors": [],
   "stats": {
-    "startTime": "2026-02-25T14:11:35.993Z",
-    "duration": 15802.418,
+    "startTime": "2026-02-25T14:34:37.373Z",
+    "duration": 14358.920999999998,
     "expected": 5,
     "skipped": 0,
     "unexpected": 0,

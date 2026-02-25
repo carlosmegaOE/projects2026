@@ -42,7 +42,7 @@
 
 ---
 
-## �📋 Project Overview
+## 📋 Project Overview
 
 This project applies the complete **RPI (Research → Plan → Implement)** workflow to stabilize an intermittently failing login test suite in Playwright. The work demonstrates evidence-driven QA engineering with full traceability from problem identification through solution validation.
 
@@ -317,11 +317,25 @@ cat tests/auth/login.spec.js
 ## 📧 Submission Checklist
 
 ### Required Artifacts (Module 6)
-- [x] **GitHub Repository URL**: https://github.com/carlosmega/projects2026 (local repo, ready for push)
+- [x] **GitHub Repository URL**: https://github.com/carlosmegaOE/projects2026
+- [x] **Email Recipient (MANDATORY)**: patricia.nardelli@objectedge.com
 - [x] **Project Summary**: ✅ This document (detailed overview)
 - [x] **RPI Artifacts Location**: `docs/rpi/research/`, `docs/rpi/plan/`, `docs/rpi/implement/`
 - [x] **.github Governance Files**: `.github/instructions/`, `.github/prompts/`, `.github/agents/`
 - [x] **Validation Evidence**: Test results and commands in implementation doc
+
+### Submission Instructions (MANDATORY)
+Email the following to **patricia.nardelli@objectedge.com**:
+```
+Subject: Module 5 Case Track Submission - Playwright RPI QA Automation
+
+Body:
+- GitHub repository URL: https://github.com/carlosmegaOE/projects2026
+- Short project summary (max 10 lines)
+- Location of RPI artifacts (research, plan, implement)
+- Location of governance files (.github/)
+- Validation evidence (commands executed and results)
+```
 
 ### Evidence Summary for Email
 
@@ -361,7 +375,118 @@ cat tests/auth/login.spec.js
 
 ---
 
-## 🔗 Related Resources
+## � RPI Workflow & Slash Command Execution Flow
+
+### RPI Stage Gate Sequence
+```mermaid
+graph TD
+    A["🔍 Research<br/>Read-only analysis"] --> B{Research<br/>Approved?}
+    B -->|No| A
+    B -->|Yes| C["📋 Plan<br/>Design solution"]
+    C --> D{Plan<br/>Approved?}
+    D -->|No| C
+    D -->|Yes| E["⚙️ Implement<br/>Execute approved steps"]
+    E --> F["✅ Validation<br/>Evidence & results"]
+    F --> G["📦 Complete<br/>Artifact package"]
+    
+    style A fill:#e1f5ff
+    style C fill:#fff3e0
+    style E fill:#f3e5f5
+    style F fill:#e8f5e9
+    style G fill:#c8e6c9
+```
+
+### Slash Command Execution Sequence
+```mermaid
+graph LR
+    A["User: /rpi-research"] --> B["Load prompt:<br/>.github/prompts/rpi-research.prompt.md"]
+    B --> C["Merge context:<br/>.github/copilot-instructions.md"]
+    C --> D["Agent Mode:<br/>Read repository"]
+    D --> E["Generate:<br/>facts | assumptions | risks"]
+    E --> F{User<br/>Validation<br/>Gate}
+    F -->|Refine| A
+    F -->|Approve| G["Save to:<br/>docs/rpi/research/"]
+    G --> H["Continue to /rpi-plan"]
+    
+    style A fill:#bbdefb
+    style G fill:#c8e6c9
+    style H fill:#fff9c4
+```
+
+---
+
+## 🎯 Suggested QA-Oriented Case Tracks
+
+These project ideas are designed to apply all course concepts (RPI, Agent Mode, Playwright, governance):
+
+### 1. **Login Reliability Monitor**
+**Problem**: Authentication flows are flaky in CI with timeout and assertion race conditions  
+**Scope**: Stabilize login tests using web-first assertions and explicit wait strategies  
+**Applies**:
+- Full RPI workflow (research root causes, plan minimal fixes, implement with evidence)
+- Copilot Agent Mode for multi-step test updates
+- `.agent.md` governance for reproducible patterns
+- Validation: 100% pass rate across browsers
+
+**Suggested target**: https://www.saucedemo.com/
+
+---
+
+### 2. **Checkout Boundary Test Suite**
+**Problem**: Discount and coupon logic has complex edge cases (zero amount, max discount, invalid codes)  
+**Scope**: Create risk-based test cases for boundary conditions using parameterized data  
+**Applies**:
+- RPI research to identify edge cases and risks  
+- Plan design for deterministic test data strategy
+- Playwright custom fixtures for reusable test setup
+- Evidence-based assertions (no guessing on output format)
+
+**Suggested target**: E-commerce checkout flow
+
+---
+
+### 3. **Session Timeout Regression Guard**
+**Problem**: Token expiration and re-auth redirects are brittle (timing-dependent, environment-sensitive)  
+**Scope**: Validate session timeout behavior and token refresh workflows  
+**Applies**:
+- RPI research on authentication lifecycle and edge timings
+- Plan design with mock/intercept strategies
+- Cross-browser validation (Chromium, Firefox, WebKit)
+- Trace diagnostics on failures (Playwright trace viewer)
+
+**Suggested target**: Any web app with session-based auth (e.g., admin dashboard)
+
+---
+
+### 4. **Error Banner Contract Validation**
+**Problem**: Error messages are inconsistent across login, checkout, and API error paths  
+**Scope**: Ensure error banners match expected format, content, and accessibility  
+**Applies**:
+- RPI research on error message inventory and accessibility requirements
+- Plan design with reusable error-checking helper functions
+- Playwright role-based locators for accessible error detection
+- Page Object Model pattern for error validation
+
+**Suggested target**: Any UI with structured error feedback
+
+---
+
+### 5. **Smoke Pack Governance Starter**
+**Problem**: Smoke suite has no governance; tests drift from standards; hard to maintain  
+**Scope**: Create a minimal, auditable smoke suite with strict Copilot governance rules  
+**Applies**:
+- Planning governance architecture (.github/ files, test naming, locator strategy)
+- RPI discipline for every test addition (research risk, plan scope, implement with evidence)
+- Agent Mode enforcement of Playwright best practices
+- Reusable `.agent.md` patterns for team adoption
+
+**Suggested target**: Existing codebase or reference app
+
+---
+
+---
+
+## 📚 RPI Mastery Checklist (Course Learning Outcomes)
 
 ### In This Repository
 - `.github/copilot-instructions.md` — QA governance rules and RPI workflow

@@ -114,6 +114,12 @@ When asked to audit QA governance:
 - `/qa-delivery analyze-flakiness` → parse test results, classify failures
 - `/qa-delivery validate-naming` → check test naming conventions
 
+### Context Files: Agent Mode vs Chat Mode
+**Preferred**: `.github/agents/*.agent.md` (primary, modern behavior definitions)  
+**Legacy**: `.github/chatmodes/*.chatmode.md` (fallback only, not recommended)  
+
+`.agent.md` provides explicit stage boundaries, file allow-lists, and structured validation—essential for RPI governance in production. Use Agent Mode exclusively in this course.
+
 ### Questions or Conflicts?
 - Refer to `.github/instructions/playwright.instructions.md` for detailed guidance
 - Refer to `docs/rpi/research/copilot-governance.md` for rationale
