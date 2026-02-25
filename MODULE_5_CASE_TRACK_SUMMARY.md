@@ -7,7 +7,42 @@
 
 ---
 
-## 📋 Project Overview
+## � Short Project Summary (Max 10 Lines)
+
+**Problem**: Checkout login tests fail intermittently in CI (Chromium) with timeouts and missed error assertions due to race conditions between assertions and API responses.
+
+**Approach**: Applied RPI (Research → Plan → Implement) workflow with full governance.
+
+**Result**: ✅ 5/5 tests passing (100% success rate, 15.9s total)
+
+**Evidence**: All RPI artifacts preserved + reproducible validation commands
+
+**Governance**: Full .github infrastructure (instructions, prompts, agents) enables RPI discipline
+
+---
+
+### 📂 File Locations
+
+**RPI Artifacts** (Evidence Trail):
+- `docs/rpi/research/checkout-login-flake.md` — ROOT CAUSE analysis
+- `docs/rpi/plan/checkout-login-stabilization.md` — Design & acceptance criteria
+- `docs/rpi/implement/checkout-login-stabilization.md` — Validation results
+
+**Governance Files** (.github/):
+- `.github/instructions/playwright.instructions.md` — Playwright rules
+- `.github/prompts/rpi-research.prompt.md` — Research stage template
+- `.github/prompts/rpi-plan.prompt.md` — Plan stage template
+- `.github/prompts/rpi-implement.prompt.md` — Implement stage (with whitelist)
+- `.github/agents/qa-delivery.agent.md` — QA audit agent
+- `.github/copilot-instructions.md` — Global governance
+
+**Implementation** (Tests & Page Objects):
+- `tests/checkout/login.spec.js` — 5 passing tests
+- `pages/checkout/LoginPage.js` — Page Object Model
+
+---
+
+## �📋 Project Overview
 
 This project applies the complete **RPI (Research → Plan → Implement)** workflow to stabilize an intermittently failing login test suite in Playwright. The work demonstrates evidence-driven QA engineering with full traceability from problem identification through solution validation.
 
