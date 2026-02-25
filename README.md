@@ -303,7 +303,7 @@ Visualization requirements:
 
 End project requirements:
 - [x] **End project instructions include mandatory email and repo URL requirements**
-  - Email: patricia.nardelli@objectedge.com (MANDATORY)
+  - Email submission required (address provided separately)
   - Repository URL: https://github.com/carlosmegaOE/projects2026
   - Submission format documented with required fields
 
@@ -311,9 +311,9 @@ End project requirements:
 
 ## 📧 Submission Checklist
 
-### Required Artifacts (Module 6)
+### Required Artifacts
 - [x] **GitHub Repository URL**: https://github.com/carlosmegaOE/projects2026
-- [x] **Email Recipient (MANDATORY)**: patricia.nardelli@objectedge.com
+- [x] **Email Submission (MANDATORY)**: Required (address provided separately)
 - [x] **Project Summary**: ✅ This document (detailed overview)
 - [x] **RPI Artifacts Location**: `docs/rpi/research/`, `docs/rpi/plan/`, `docs/rpi/implement/`
 - [x] **.github Governance Files**: `.github/instructions/`, `.github/prompts/`, `.github/agents/`
